@@ -136,8 +136,12 @@ def plot_data(data, metadata, window=1, interactive=True, outfile=None,
     ax.set_xlabel(metadata['labels'].get('xaxis', ''))
     ax.set_ylabel(metadata['labels'].get('yaxis', ''))
     ax.set_title(metadata.get('title', ''))
-    
-    ax.set_axis_bgcolor(bg_color)
+   
+    # Matplotlib 2.2.2 patch from 2.2.0
+    try:
+        ax.set_axis_bgcolor(bg_color)
+    except:
+        ax.set_facecolor(bg_color)
     ax.grid('on')
     
     try:
